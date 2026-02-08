@@ -1,9 +1,16 @@
+import ProductList from '@/components/ProductList';
+import Image from 'next/image';
 import React from 'react'
 
-const page = () => {
+const Homepage = () => {
   return (
-    <div>page</div>
+    <div className="">
+      <div className="relative aspect-3/1 mb-12">
+        <Image src="/featured.png" alt="featured image" fill/>
+      </div>
+      <ProductList/>
+    </div>
   )
 }
 
-export default page
+export default Homepage;
