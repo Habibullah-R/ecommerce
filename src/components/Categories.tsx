@@ -54,15 +54,15 @@ const categories = [
 ];
 
 const Categories = () => {
-    const searchParams = useSearchParams()
-    const router = useRouter()
-    const pathname = usePathname()
-    const selectedCategory = searchParams.get("category")
-    const handleCategoryChange = (category:string | null)=>{
-        const params = new URLSearchParams(searchParams)
-        params.set("category",category || "all")
-        router.push(`${pathname}?${params.toString()}`,{scroll:false})
-    }
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const selectedCategory = searchParams.get("category");
+  const handleCategoryChange = (category: string | null) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("category", category || "all");
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  };
   return (
     <div className="bg-gray-100 grid grid-cols-2 sm:grid-cols-3 p-2 rounded-lg text-sm md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
       {categories.map((category) => (
@@ -71,7 +71,7 @@ const Categories = () => {
             ${category.slug === selectedCategory ? "bg-white" : "text-gray-500"} 
             `}
           key={category.name}
-          onClick={()=>handleCategoryChange(category.slug)}
+          onClick={() => handleCategoryChange(category.slug)}
         >
           {category.icon}
           {category.name}
