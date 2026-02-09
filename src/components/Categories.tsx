@@ -64,7 +64,7 @@ const Categories = () => {
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
   return (
-    <div className="bg-gray-100 grid grid-cols-2 sm:grid-cols-3 p-2 rounded-lg text-sm md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
+    <div className="bg-gray-100 mb-8 grid grid-cols-2 sm:grid-cols-3 p-2 rounded-lg text-sm md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
       {categories.map((category) => (
         <div
           className={`flex px-2 py-1 items-center gap-2 cursor-pointer rounded-md
