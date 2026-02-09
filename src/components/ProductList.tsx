@@ -3,6 +3,7 @@ import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import { Suspense } from "react";
 import Link from "next/link";
+import Filter from "./Filter";
 
 const products: ProductsType = [
   {
@@ -115,12 +116,13 @@ const products: ProductsType = [
   },
 ];
 
-const ProductList = ({category}:{category:string}) => {
+const ProductList = ({category,params}:{category:string,params:"HomePage"| "Products"}) => {
   return (
     <div className="w-full">
       <Suspense>
         <Categories />
       </Suspense>
+      {params === "HomePage" && <Filter/>}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
