@@ -7,13 +7,13 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 const ProductCard = ({product}:{product:ProductType}) => {
-    const [productTypes , setProducttypes] = useState({
+    const [productTypes , setProductTypes] = useState({
         size:product.sizes[0],
         color:product.colors[0]
     })
 
     const handleProductType = ({type,value}:{type:"size"|"color",value:string})=>{
-        setProducttypes((prev)=>({
+        setProductTypes((prev)=>({
             ...prev,
             [type]:value
         }))
