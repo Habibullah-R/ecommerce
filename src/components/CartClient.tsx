@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import ShippingForm from "./ShippingForm";
+import PaymentForm from "./PaymentForm";
 
 const steps = [
   {
@@ -163,7 +164,7 @@ const CartClient = () => {
           ) : activeStep === 2 ? (
             <ShippingForm setShippingForm={setShippingForm}/>
           ) : activeStep === 3 && shippingForm ? (
-            "Payment"
+            <PaymentForm/>
           ) : (
             <p className="text-sm text-gray-500">
               Please fill in the shipping form to continue.
