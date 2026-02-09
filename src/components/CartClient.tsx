@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import ShippingForm from "./ShippingForm";
 import PaymentForm from "./PaymentForm";
+import useCartStore from "@/store/cartStore";
 
 const steps = [
   {
@@ -86,6 +87,8 @@ const CartClient = () => {
 
   const activeStep = parseInt(searchParams.get("step") || "1");
 
+  const { cart , removeFromCart } = useCartStore()
+
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
       {/* TITLE */}
@@ -121,7 +124,7 @@ const CartClient = () => {
         {/* STEPS */}
         <div className="w-full lg:w-7/12 shadow-lg border border-gray-100 p-8 rounded-lg flex flex-col gap-8">
           {activeStep === 1 ? (
-            cartItems.map((item) => (
+            cart.map((item) => (
               // SINGLE CART ITEM
               <div
                 className="flex items-center justify-between"
@@ -156,7 +159,7 @@ const CartClient = () => {
                   </div>
                 </div>
                 {/* DELETE BUTTON */}
-                <button className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
+                <button onClick={()=>removeFromCart(item)} className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
                   <Trash2 className="w-3 h-3" />
                 </button>
               </div>
@@ -179,7 +182,7 @@ const CartClient = () => {
               <p className="text-gray-500">Subtotal</p>
               <p className="font-medium">
                 $
-                {cartItems
+                {cart
                   .reduce((acc, item) => acc + item.price * item.quantity, 0)
                   .toFixed(2)}
               </p>
@@ -197,7 +200,7 @@ const CartClient = () => {
               <p className="text-gray-800 font-semibold">Total</p>
               <p className="font-medium">
                 $
-                {cartItems
+                {cart
                   .reduce((acc, item) => acc + item.price * item.quantity, 0)
                   .toFixed(2)}
               </p>
